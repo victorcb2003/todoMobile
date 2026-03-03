@@ -41,21 +41,21 @@ export default function Todo() {
     const [nom, setNom] = useState("")
     const [count, setCount] = useState(0)
     const [modifyId, setModifyId] = useState(null)
-    const [newValues,setNewValue] = useState("")
+    const [newValues, setNewValue] = useState("")
 
     function handleSubmit() {
+
+        if (nom.trim().length == 0) return
+
         setTodo([...todo, { nom: nom, done: false, id: count }])
         setCount(count + 1)
         setNom("")
     }
 
     function handleDone(item) {
-        console.log("on handleDone")
-        console.log(item)
         const newTodo = [...todo]
         const change = newTodo.find(t => t.id == item.id)
         change.done = !change.done
-        console.log(newTodo)
         setTodo(newTodo)
 
     }
@@ -69,7 +69,7 @@ export default function Todo() {
         setNewValue(item.nom)
     }
 
-    function confirmModify(){
+    function confirmModify() {
         const newTodo = [...todo]
         const change = newTodo.find(t => t.id == modifyId)
         change.nom = newValues
@@ -83,47 +83,50 @@ export default function Todo() {
     // },[todo])
 
     const renderItems = ({ item }) =>
-        <TouchableOpacity style={item.done ? style.true : style.false} onPress={() => handleDone(item)}>
-            <>
-                {modifyId == item.id ? (
-                    <View>
-                        <TextInput
-                            value={newValues}
-                            onChangeText={setNewValue}
-                            placeholder='Text'
-                        />
-                        <Pressable onPress={()=>confirmModify()}>
-                            <Text>
-                                Confirmer
-                            </Text>
-                        </Pressable>
-                        <Pressable onPress={()=>setModifyId(null)}>
-                            <Text>
-                                Annuler
-                            </Text>
-                        </Pressable>
-                    </View>
-                    
-                ) : (
-                    <Text>
-                        {item.nom}
-                    </Text>
-                )}
+            <TouchableOpacity style={item.done ? style.true : style.false} onPress={() => handleDone(item)}>
+                <>
+                    {modifyId == item.id ? (
+                        <View style={style.modifyConteiner}>
+                            <TextInput
+                                value={newValues}
+                                onChangeText={setNewValue}
+                                placeholder='Text'
+                                style={style.input}
+                            />
+                            <View  style={{marginLeft:"50a"}}>
+                            <Pressable onPress={() => confirmModify()}>
+                                <Text>
+                                    Confirmer
+                                </Text>
+                            </Pressable>
+                            <Pressable onPress={() => setModifyId(null)}>
+                                <Text>
+                                    Annuler
+                                </Text>
+                            </Pressable>
+                            </View>
+                        </View>
 
-            </>
-            <View>
-                <Pressable onPress={()=>handleModify(item)}>
-                    <Text>
-                        Modifier
-                    </Text>
-                </Pressable>
-                <Pressable onPress={() => handleDelete(item)}>
-                    <Text>
-                        Supprimer
-                    </Text>
-                </Pressable>
-            </View>
-        </TouchableOpacity>
+                    ) : (
+                        <Text>
+                            {item.nom}
+                        </Text>
+                    )}
+
+                </>
+                <View>
+                    <Pressable onPress={() => handleModify(item)}>
+                        <Text>
+                            Modifier
+                        </Text>
+                    </Pressable>
+                    <Pressable onPress={() => handleDelete(item)}>
+                        <Text>
+                            Supprimer
+                        </Text>
+                    </Pressable>
+                </View>
+            </TouchableOpacity>
 
     return (
         <View>
@@ -131,16 +134,17 @@ export default function Todo() {
                 Todo
             </Text>
             <View style={style.inputConteiner}>
-            <TextInput
-                value={nom}
-                onChangeText={setNom}
-                placeholder='todo ...'
-            />
-            <Pressable style={style.button} onPress={() => handleSubmit()}>
-                <Text>
-                    Ajouter une todo
-                </Text>
-            </Pressable>
+                <TextInput
+                    value={nom}
+                    onChangeText={setNom}
+                    placeholder='todo ...'
+                    style={style.input}
+                />
+                <Pressable style={style.button} onPress={() => handleSubmit()}>
+                    <Text>
+                        Ajouter une todo
+                    </Text>
+                </Pressable>
             </View>
 
 

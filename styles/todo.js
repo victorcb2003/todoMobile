@@ -13,14 +13,25 @@ export const style=StyleSheet.create({
         flexDirection:"row",
         backgroundColor:"green",
         justifyContent:"space-between",
-        alignItems:"center"
+        alignItems:"center",
+        padding:5,marginHorizontal: "5%",
+        marginTop:10,
+        borderBlockColor:"black",
+        borderWidth:2,
+        borderRadius:15
     },
     false:{
         display:'flex',
         flexDirection:"row",
         backgroundColor:"red",
         justifyContent:"space-between",
-        alignItems:"center"
+        alignItems:"center",
+        padding:5,
+        marginHorizontal: "5%",
+        marginTop:10,
+        borderBlockColor:"black",
+        borderWidth:2,
+        borderRadius:15
     },
     displayConteiner : {
         display: "flex",
@@ -45,5 +56,14 @@ export const style=StyleSheet.create({
         marginHorizontal:"10%",
         marginTop:20,
         marginBottom:40
+    },
+    modifyConteiner :{
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"space-between",
+        alignItems:"center",
+    },
+    input: {
+        maxWidth:"60%"
     }
 })
