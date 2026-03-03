@@ -155,6 +155,7 @@ export default function Todo() {
                         data={todo}
                         renderItem={renderItems}
                         keyExtractor={item => item.id}
+                        ListEmptyComponent={<Text style={style.emptyText}>Aucune tâche pour le moment.</Text>}
                     />
                 </View>
             </View>

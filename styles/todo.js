@@ -65,5 +65,8 @@ export const style=StyleSheet.create({
     },
     input: {
         maxWidth:"60%"
+    },
+    emptyText:{
+        textAlign:'center'
     }
 })
