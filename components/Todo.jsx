@@ -127,23 +127,25 @@ export default function Todo() {
 
     return (
         <View>
-            <Text>
-                Ajouter une Todo
+            <Text style={style.h1}>
+                Todo
             </Text>
+            <View style={style.inputConteiner}>
             <TextInput
                 value={nom}
                 onChangeText={setNom}
-                placeholder='Text'
+                placeholder='todo ...'
             />
             <Pressable style={style.button} onPress={() => handleSubmit()}>
                 <Text>
                     Ajouter une todo
                 </Text>
             </Pressable>
+            </View>
 
 
             <View>
-                <Text>Todos :</Text>
+                <Text style={style.h2}>Todos :</Text>
                 <View style={{ width: "100%" }}>
                     <FlatList
                         data={todo}
